@@ -1,6 +1,10 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const mongo = require('mongodb'),
+    MongoClient = mongo.mongoClient,
+    mongoURL = 'mongodb://localhost:27017',
+    dbName = 'mfryer';
 
 const router = express.Router();
 
@@ -17,7 +21,7 @@ router.route('/blog-post/:blog_id')
         }
 
         res.set('Access-Control-Allow-Origin', '*');
-        res.status(200).send({ content: data.toString() });
+        res.status(200).json({ content: data.toString() });
     });
 })
 .all(badRequest);
