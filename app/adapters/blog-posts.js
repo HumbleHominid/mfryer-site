@@ -10,17 +10,17 @@ export default DS.Adapter.extend({
 
         if (this.namespace) URL += `/${this.namespace}`
         
-        URL += `/${modelName}`
+        URL += `/${modelName}`;
 
         if (id) URL += `/${id}`;
 
         return URL;
     },
-    findRecord(store, type, id = '') {
+    findAll(store, type) {
         return new Promise((resolve, reject) => {
-            $.get(this.buildURL(type.modelName, id))
+            $.get(this.buildURL(type.modelName))
             .then((data) => {
-                data.id = id;
+                data.id = data.filename;
                 resolve(data);
             })
             .catch(reject);

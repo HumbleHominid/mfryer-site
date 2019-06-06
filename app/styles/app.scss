@@ -16,3 +16,14 @@ footer {
     right: 0px;
     left: 0px;
 }
+
+
+article {
+    @include media-breakpoint-up(xs) {
+        margin: 0 5%;
+    }
+
+    @include media-breakpoint-up(md) {
+        margin: 0 10%;
+    }
+}
