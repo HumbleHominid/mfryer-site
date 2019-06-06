@@ -1,10 +1,6 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const mongo = require('mongodb'),
-    MongoClient = mongo.mongoClient,
-    mongoURL = 'mongodb://localhost:27017',
-    dbName = 'mfryer';
 
 const router = express.Router();
 

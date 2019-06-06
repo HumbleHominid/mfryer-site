@@ -19,14 +19,26 @@ const routes = [
 //- Script Constants -
 //--------------------
 const app = express();
-const hostname = 'localhost';
+let namespace;
+let hostname;
 const port = 3000;
+
+if (process.argv.includes('--prod')) {
+    namespace = 'api';
+    hostname = 'mfryer.us';
+}
+else {
+    namespace = '';
+    hostname = 'localhost';
+}
+
+const uri = (namespace ? `${namespace}.` : '') + `${hostname}:${port}`; 
 
 //-------------------
 //- Server Listener -
 //-------------------
 app.listen(port, () => {
-    console.log(`Listening at "${hostname}:${port}"`);
+    console.log(`Listening at "${uri}"`);
 });
 
 //--------------------
