@@ -28,10 +28,10 @@ router.route('/blog-post')
     fs.readdir('./data/blog-posts', (err, data) => {
         let blog_titles = [ ];
         
-        data.forEach((filename) => {
+        data.sort().reverse().forEach((filename) => {
             if (filename.match(/json$/i)) {
                 let blog_data = JSON.parse(fs.readFileSync(`./data/blog-posts/${filename}`));
-                blog_titles.push({ file: filename, title: blog_data.title });
+                blog_titles.push({ file: filename.replace(/\.json$/i, ''), title: blog_data.title });
             }
         });
 

@@ -1,5 +1,5 @@
-{{#link-to "blogs.blog" 1}}Blog 1{{/link-to}}
-<br>
-{{#each-in model.content as |key value|}}
-    {{value.title}} {{value.file}}<br>
-{{/each-in}}
+<ul>
+    {{#each-in model.content as |key value|}}
+        <li>{{#link-to "blogs.blog" value.file}}{{value.title}}{{/link-to}}</li>
+    {{/each-in}}
+</ul>
