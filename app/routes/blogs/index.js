@@ -1,8 +1,9 @@
 import Route from '@ember/routing/route';
+import ENV from 'mfryer-site/config/environment';
 
 export default Route.extend({
     model() {
-        return fetch(`http://localhost:3000/blog-post`)
+        return fetch(`${ENV.APP.endpoint}/blog-post`)
         .then((res) => res.json())
         .catch(() => undefined)
     },

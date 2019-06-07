@@ -1,32 +1,15 @@
 import DS from 'ember-data';
 import $ from 'jquery';
+import ENV from 'mfryer-site/config/environment';
 
 export default DS.Adapter.extend({
-    host: window[document.title].host,
-    namespace: window[document.title].namespace,
-
-    buildURL(modelName, id = 'all') {
-        let URL = this.host;
-
-        if (this.namespace) URL = `${this.namespace}.${URL}`;
-        URL += `/${modelName}`;
-        if (id !== 'all') URL += `/${id}`;
-        return URL;
-    },
     findRecord(store, type, id = '') {
         return new Promise((resolve, reject) => {
-            $.get(this.buildURL(type.modelName, id))
+            $.get(`${ENV.APP.endpoint}/blog-post/${id}`)
             .then((data) => {
                 data.id = id;
                 resolve(data);
             })
-            .catch(reject);
-        });
-    },
-    findAll(store, type) {
-        return new Promise((resolve, reject) =>  {
-            $.get(this.buildURL(type.modelName))
-            .then(resolve)
             .catch(reject);
         });
     }
