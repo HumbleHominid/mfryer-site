@@ -5,15 +5,12 @@ export default DS.Adapter.extend({
     host: window[document.title].host,
     namespace: window[document.title].namespace,
 
-    buildURL(modelName, id = '') {
+    buildURL(modelName, id = 'all') {
         let URL = this.host;
 
-        if (this.namespace) URL += `/${this.namespace}`
-        
-        URL += `/${modelName}`
-
-        if (id) URL += `/${id}`;
-
+        if (this.namespace) URL = `${this.namespace}.${URL}`;
+        URL += `/${modelName}`;
+        if (id !== 'all') URL += `/${id}`;
         return URL;
     },
     findRecord(store, type, id = '') {
@@ -23,6 +20,13 @@ export default DS.Adapter.extend({
                 data.id = id;
                 resolve(data);
             })
+            .catch(reject);
+        });
+    },
+    findAll(store, type) {
+        return new Promise((resolve, reject) =>  {
+            $.get(this.buildURL(type.modelName))
+            .then(resolve)
             .catch(reject);
         });
     }

@@ -1,4 +1,5 @@
 {{#link-to "blogs.blog" 1}}Blog 1{{/link-to}}
-{{!-- {{#each-in model as |key value|}}
-    {{value}}<br>
-{{/each-in}} --}}
+<br>
+{{#each-in model.content as |key value|}}
+    {{value.title}} {{value.file}}<br>
+{{/each-in}}

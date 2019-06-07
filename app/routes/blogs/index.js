@@ -1,9 +1,11 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-    async model() {
-        return this.store.findAll('blog-posts').then((data) => {
-            return data;
-        });
+    model() {
+        return fetch(`http://localhost:3000/blog-post`)
+        .then((res) => {
+            return res.json();
+        })
+        .catch(console.error)
     }
 });
