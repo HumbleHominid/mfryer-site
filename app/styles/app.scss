@@ -9,16 +9,7 @@
 
 #outlet-container {
     padding: 0.5em;
-}
 
-footer {
-    grid-row-start: footer-start;
-    right: 0px;
-    left: 0px;
-}
-
-
-article {
     @include media-breakpoint-up(xs) {
         margin: 0 5%;
     }
@@ -26,4 +17,22 @@ article {
     @include media-breakpoint-up(md) {
         margin: 0 10%;
     }
+}
+
+#application-footer {
+    grid-row-start: footer;
+    dl {
+        font-size: 0.80rem;
+
+        dt{
+            padding-right: 0;
+        }
+        dd {
+            margin-bottom: 0.15rem;
+        }
+    }
+}
+
+.text-right {
+    text-align: right;
 }

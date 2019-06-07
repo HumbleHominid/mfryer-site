@@ -54,8 +54,6 @@ function badRequest(req, res) {
     res.status(400).send('Bad Request');
 }
 
-// Include the users routes
-
 // All other routes
 app.route('*')
 // Define get requests to 404

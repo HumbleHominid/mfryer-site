@@ -12,6 +12,7 @@ Router.map(function() {
     this.route('blog', { path: '/:blog_id' });
   });
   this.route('game');
+  this.route('error-page');
 });
 
 export default Router;
