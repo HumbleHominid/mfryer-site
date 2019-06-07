@@ -12,7 +12,8 @@ const express = require('express');
 //- Additional Routes -
 //---------------------
 const routes = [
-    require('./routes/blog-posts.js')
+    require('./routes/blog-posts.js'),
+    require('./routes/resume.js')
 ];
 
 //--------------------
