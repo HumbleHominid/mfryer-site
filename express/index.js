@@ -20,20 +20,15 @@ const routes = [
 //- Script Constants -
 //--------------------
 const app = express();
-let namespace;
-let hostname;
+let uri;
 const port = 3000;
 
 if (process.argv.includes('--prod')) {
-    namespace = 'api';
-    hostname = 'mfryer.us';
+    uri = 'http://mfryer.us/node'
 }
 else {
-    namespace = '';
-    hostname = 'localhost';
+    uri = 'localhost:3000'
 }
-
-const uri = (namespace ? `${namespace}.` : '') + `${hostname}:${port}`; 
 
 //-------------------
 //- Server Listener -

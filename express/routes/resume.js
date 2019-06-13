@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const resume_url = './data/resume.pdf';
+const resume_path = './data/resume.pdf';
 
 const router = express.Router();
 
@@ -10,16 +10,7 @@ function badRequest(req, res) {
 }
 
 router.route('/resume')
-.get((req, res) => {
-    let file = fs.createReadStream(resume_url);
-    let stat = fs.statSync(resume_url);
-    
-    res.setHeader('Content-Length', stat.size);
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename=quote.pdf');
-
-    file.pipe(res);
-})
+.get((req, res) => res.download(resume_path), 'resume.pdf')
 .all(badRequest);
 
 module.exports = router;

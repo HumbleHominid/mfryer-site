@@ -21,10 +21,12 @@
 
 #application-footer {
     grid-row-start: footer;
+    
     dl {
         font-size: 0.80rem;
-
-        dt{
+        margin: 0;
+        
+        dt {
             padding-right: 0;
         }
         dd {
@@ -35,8 +37,4 @@
 
 .text-right {
     text-align: right;
-}
-
-.pointer:hover {
-    cursor: pointer;
 }
