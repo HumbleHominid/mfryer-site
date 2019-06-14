@@ -1,2 +1,14 @@
 <h1 class="display-2">Blogs</h1>
-{{outlet}}
+<ul>
+    {{#each-in model.content as |key value|}}
+        <li>
+            <button class="btn btn-link btn-sm" {{action (mut blogModal) true}} {{action 'updateModalData' value.file}} data-toggle="modal" data-target="#blogModal">
+                {{value.title}}
+            </button>
+        </li>
+    {{/each-in}}
+</ul>
+
+{{#bs-modal-simple size="lg" open=blogModal onHide=(action (mut blogModal) false) onHidden=(action 'reroute')}}
+  {{outlet}}
+{{/bs-modal-simple}}

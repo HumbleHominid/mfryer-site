@@ -8,9 +8,7 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('about');
-  this.route('blogs', function() {
-    this.route('blog', { path: '/:blog_id' });
-  });
+  this.route('blogs');
   this.route('game');
   this.route('error-page');
 });
