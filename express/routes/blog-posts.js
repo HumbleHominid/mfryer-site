@@ -1,4 +1,5 @@
 const express = require('express');
+const view_logger = require('../middleware/view_logger');
 const fs = require('fs');
 
 const router = express.Router();
@@ -6,6 +7,8 @@ const router = express.Router();
 function badRequest(req, res) {
     res.sendStatus(400);
 }
+
+router.use('/blog-post/:blog_id', view_logger);
 
 router.route('/blog-post/:blog_id')
 .get((req, res) => {
@@ -20,6 +23,8 @@ router.route('/blog-post/:blog_id')
     });
 })
 .all(badRequest);
+
+router.use('/blog-post', view_logger);
 
 router.route('/blog-post')
 .get((req, res) => {

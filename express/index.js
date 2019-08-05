@@ -20,14 +20,14 @@ const routes = [
 //- Script Constants -
 //--------------------
 const app = express();
-let uri;
 const port = 3000;
+let uri;
 
 if (process.argv.includes('--prod')) {
-    uri = 'http://mfryer.us/node'
+    uri = 'http://mfryer.us/node';
 }
 else {
-    uri = 'localhost:3000'
+    uri = `localhost:${port}`;
 }
 
 //-------------------
@@ -45,16 +45,8 @@ routes.forEach((route) => { app.use(route) });
 //-----------------
 //- Set up Routes -
 //-----------------
-// Bad request
-function badRequest(req, res) {
-    res.status(400).send('Bad Request');
-}
 
 // All other routes
 app.route('*')
-// Define get requests to 404
-.get((req, res) => {
-    res.status(404).send('Page not Found');
-})
-.all(badRequest);
-
+.get((req, res) => res.status(404).send('Page not Found'))
+.all((req, res) => res.sendStatus(400));
